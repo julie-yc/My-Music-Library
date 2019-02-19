@@ -1,0 +1,124 @@
+﻿<Page
+    x:Class="Music_Library.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Music_Library"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" RequestedTheme="Default">
+
+
+    <Page.Resources>
+        <DataTemplate x:Key="MusicGridView_DefaultItemTemplate"
+                      x:DataType="local:Song">
+            <Grid Height="220"
+                  Width="220"
+                  Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image x:Name="ItemImage"
+                       Source="Assets/512.png"
+                       Stretch="Uniform" />
+
+                <StackPanel Orientation="Vertical" Grid.Row="1">
+                    <TextBlock Text="{x:Bind Title}" 
+                               FontSize="15"
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <TextBlock Text="{x:Bind Album}"
+                                   FontSize="11"
+                                   TextWrapping="NoWrap"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource CaptionTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind Artist}"
+                                   FontSize="11"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                    />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="MusicGridView_ItemsPanelTemplate">
+            <ItemsWrapGrid Orientation="Horizontal"
+                           HorizontalAlignment="Center"/>
+        </ItemsPanelTemplate>
+
+    </Page.Resources>
+    <Page.Background>
+        <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
+    </Page.Background>
+
+
+
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Background="LightGray" Grid.Column="0" Grid.RowSpan="5"/>
+
+
+        <Button Content="Albums" 
+                    Grid.Row="0" 
+                    Click="Albums_Click" 
+                    Foreground="Black"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+        <Button Content="Artists" 
+                    Grid.Row="1" 
+                    Click="Artists_Click"
+                    Foreground="Black"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+        <Button Content="Songs" 
+                    Grid.Row="2" 
+                    Click="Songs_Click"
+                    Foreground="Black"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+        <Button Content="Choose Music" 
+                    Grid.Row="3" 
+                    Click="Choose_Music_Click"
+                    Foreground="Black"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+
+
+        <GridView ItemsPanel="{StaticResource MusicGridView_ItemsPanelTemplate}" 
+                  x:Name="ImageGridView"
+                  Grid.Column="1"
+                  ItemTemplate="{StaticResource MusicGridView_DefaultItemTemplate}" 
+                  Margin="0,0,0,100" 
+                  Grid.RowSpan="5"/>
+
+        <MediaPlayerElement x:Name="mediaPlayer"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    Width="500" 
+                    AreTransportControlsEnabled="True"
+                    AutoPlay="False"/>
+
+    </Grid>
+
+
+    
+</Page>
