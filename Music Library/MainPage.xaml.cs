@@ -31,6 +31,7 @@ namespace Music_Library
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //test
         public readonly ObservableCollection<Song> Songs;
 
         public MainPage()
